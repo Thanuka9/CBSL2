@@ -1,0 +1,11 @@
+{
+  "n_loans": 50000,
+  "total_outstanding_mn_lkr": 164930.23,
+  "npl_ratio_pct": 18.74,
+  "unsecured_share_pct": 34.66,
+  "top_sector_by_exposure": "Construction",
+  "top_sector_share_pct": 17.28,
+  "highest_risk_sector": "Infrastructure Development",
+  "highest_risk_score": 80.36,
+  "years": [2015, 2023]
+}
