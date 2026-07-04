@@ -4,37 +4,40 @@ Exercise 02 - Dashboard Design Note
 
 Dashboard objective:
 To communicate ABC Bank PLC loan portfolio risk, exposure concentration,
-asset quality and macroeconomic context to management or supervisors.
+asset quality, macroeconomic context, risk drivers and anomaly watchlist
+to support management or supervisory decision-making.
 
-Selected visuals:
-1. KPI cards:
-   - Total loans
-   - Total outstanding
-   - NPL ratio by amount
-   - Unsecured / partially secured exposure
-   These provide immediate portfolio health indicators.
+Key KPIs:
+- Total loans: 50,000
+- Total outstanding: Rs. 164,930.23 Mn
+- NPL ratio by amount: 18.74%
+- NPL ratio by count: 20.63%
+- Fully unsecured exposure share: 34.66%
+- Unsecured / partially secured exposure share: 54.81%
+- Largest sector: Construction
+- Highest composite risk sector: Energy
 
-2. Sector exposure bar chart:
-   Shows concentration across economic sectors.
+Dashboard sections:
+1. Executive Overview
+2. Sector Exposure and Asset Quality
+3. Portfolio Structure
+4. Macro-Financial Context
+5. Underlying Drivers of Risk
+6. Loan-Level Anomaly Watchlist
+7. Power BI / BI Tool Implementation
 
-3. Sector NPL ratio chart:
-   Identifies sectors with weaker asset quality.
-
-4. Composite sector risk score chart:
-   Combines NPL, collateral risk, rating weakness and concentration.
-
-5. Annual portfolio trend:
-   Shows origination-year exposure and portfolio movement.
-
-6. Macro and NPL trend:
-   Places loan portfolio risk in the context of inflation and macro stress.
-
-7. Risk-driver feature importance:
-   Explains underlying drivers of NPL risk from the Random Forest model.
-
-8. Anomaly watchlist:
-   Supports loan-level review and targeted investigation.
+Visualisation justification:
+- KPI cards provide immediate portfolio health indicators.
+- Sector exposure charts identify concentration risk.
+- NPL charts identify asset-quality pressure.
+- Bubble chart combines sector concentration, NPL ratio and risk score.
+- Treemap shows concentration visually.
+- Rating and collateral charts explain structural portfolio risk.
+- Macro charts place loan portfolio risk in economic context.
+- Feature importance chart explains model-based NPL risk drivers.
+- Anomaly table supports loan-level investigation.
 
 Limitations:
-The dashboard is generated as an HTML BI-style dashboard. In Power BI,
-the same CSV outputs can be loaded and the same measures recreated.
+The supplied dataset is loan-level origination data rather than a full monthly balance-sheet time series.
+Annual portfolio growth is therefore interpreted by origination-year exposure. Macro variables are used
+for contextual interpretation, not causal inference.
