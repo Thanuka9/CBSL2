@@ -1,0 +1,11 @@
+sector,loan_count,total_outstanding_lkr,portfolio_share_pct,npl_ratio_amount_pct,unsecured_share_pct,avg_rating_rank,composite_risk_score
+Infrastructure Development,4959,22069987341.0,13.38,22.16,37.06,4.39,80.36
+Energy,5132,20935495622.0,12.69,23.52,35.26,4.41,78.58
+Healthcare,4982,10047744511.0,6.09,24.6,36.71,4.37,75.95
+Agriculture,4959,12773050141.0,7.74,24.94,34.74,4.4,74.62
+Consumer,5043,5049910341.0,3.06,22.18,35.87,4.41,71.87
+Construction,5216,28500068435.0,17.28,20.45,36.94,4.33,71.47
+Retail,4951,3959380580.0,2.4,23.79,34.16,4.39,65.55
+Telecommunication,5077,18910385187.0,11.47,21.08,34.27,4.35,61.82
+Manufacturing,5012,15712153616.0,9.53,22.61,33.05,4.35,58.91
+Financial Sector,4669,26972058208.0,16.35,0.0,30.07,4.48,29.38
