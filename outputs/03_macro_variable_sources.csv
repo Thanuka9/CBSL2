@@ -1,0 +1,10 @@
+variable,source_used,indicator_code,source_url,fallback_used
+sri_lanka_gdp_growth_pct,Structured fallback reference table,NY.GDP.MKTP.KD.ZG,https://api.worldbank.org/v2/country/LKA/indicator/NY.GDP.MKTP.KD.ZG?format=json&date=2015:2024,Yes - API unavailable or incomplete during run
+sri_lanka_inflation_pct,Structured fallback reference table,FP.CPI.TOTL.ZG,https://api.worldbank.org/v2/country/LKA/indicator/FP.CPI.TOTL.ZG?format=json&date=2015:2024,Yes - API unavailable or incomplete during run
+sri_lanka_unemployment_pct,Structured fallback reference table,SL.UEM.TOTL.ZS,https://api.worldbank.org/v2/country/LKA/indicator/SL.UEM.TOTL.ZS?format=json&date=2015:2024,Yes - API unavailable or incomplete during run
+avg_exchange_rate_lkr_usd,Structured fallback reference table,PA.NUS.FCRF,https://api.worldbank.org/v2/country/LKA/indicator/PA.NUS.FCRF?format=json&date=2015:2024,Yes - API unavailable or incomplete during run
+private_credit_by_banks_pct_gdp,Structured fallback reference table,FS.AST.PRVT.GD.ZS,https://api.worldbank.org/v2/country/LKA/indicator/FS.AST.PRVT.GD.ZS?format=json&date=2015:2024,Yes - API unavailable or incomplete during run
+policy_rate_pct,CBSL publications / structured reference table,Policy rate / standing facility rate context,Central Bank of Sri Lanka publications,Structured from public-source reference
+private_sector_credit_growth_pct,CBSL publications / structured reference table,Private sector credit growth,Central Bank of Sri Lanka publications,Structured from public-source reference
+global_gdp_growth_pct,IMF World Economic Outlook / structured reference table,Global GDP growth,IMF World Economic Outlook,Structured from public-source reference
+global_inflation_pct,IMF World Economic Outlook / structured reference table,Global inflation,IMF World Economic Outlook,Structured from public-source reference

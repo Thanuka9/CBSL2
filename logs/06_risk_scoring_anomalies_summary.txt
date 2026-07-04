@@ -1,0 +1,32 @@
+Exercise 02 - Step 06 Risk Scoring and Anomaly Summary
+================================================================================
+
+Composite Sector Risk Score
+--------------------------------------------------------------------------------
+The composite risk score combines NPL ratio, collateral risk, rating weakness and portfolio concentration. It is used to prioritise sectors for supervisory or management review.
+
+Highest risk sector: Energy with score 72.40/100.
+
+Loan-Level Anomaly Detection
+--------------------------------------------------------------------------------
+The anomaly score combines sector-relative loan size, NPL status, collateral risk, weak rating, large exposure flag and sector risk. The top 250 loans are saved as a watchlist for further review.
+
+Top anomaly loan: L005699, sector: Construction, amount: Rs. 361.18 Mn, score: 57.28.
+
+Risk Driver Model
+--------------------------------------------------------------------------------
+Random Forest ROC AUC: 0.8737
+Top model feature: rating_rank.
+
+The model is used for interpretability and driver identification. It should not be treated as a regulatory PD model without more complete borrower-level performance data.
+
+Generated Outputs
+--------------------------------------------------------------------------------
+- outputs/06_sector_composite_risk_score.csv
+- outputs/06_top_250_anomaly_watchlist.csv
+- outputs/06_all_loans_with_anomaly_score.csv
+- outputs/06_risk_driver_feature_importance.csv
+- outputs/06_model_metrics.txt
+- figures/06_sector_composite_risk_score.png
+- figures/06_risk_driver_feature_importance.png
+- figures/06_anomaly_score_distribution.png

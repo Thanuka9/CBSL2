@@ -1,0 +1,50 @@
+Exercise 02 - Step 04 Loan + Macro Merge Log
+======================================================================
+
+Input Files
+----------------------------------------------------------------------
+Loan file: C:\Users\cbslab\Desktop\Technical Assessment Data Scientist\Thanuka_Ellepola_DataScienceAssessment\Exercise 02\data\processed\02_clean_loan_portfolio.csv
+Macro file: C:\Users\cbslab\Desktop\Technical Assessment Data Scientist\Thanuka_Ellepola_DataScienceAssessment\Exercise 02\data\processed\03_macro_variables_annual.csv
+
+Dataset Shapes
+----------------------------------------------------------------------
+Loan data rows: 50,000
+Loan data columns: 19
+Macro data rows: 10
+Macro data columns: 15
+Panel rows: 50,000
+Panel columns: 33
+
+Merge Key
+----------------------------------------------------------------------
+Merged on loan origination year.
+
+Loan Years
+----------------------------------------------------------------------
+[np.int64(2015), np.int64(2016), np.int64(2017), np.int64(2018), np.int64(2019), np.int64(2020), np.int64(2021), np.int64(2022), np.int64(2023)]
+
+Macro Years
+----------------------------------------------------------------------
+[np.int64(2015), np.int64(2016), np.int64(2017), np.int64(2018), np.int64(2019), np.int64(2020), np.int64(2021), np.int64(2022), np.int64(2023), np.int64(2024)]
+
+Missing Macro Values After Merge
+----------------------------------------------------------------------
+sri_lanka_gdp_growth_pct               0
+sri_lanka_inflation_pct                0
+sri_lanka_unemployment_pct             0
+avg_exchange_rate_lkr_usd              0
+private_credit_by_banks_pct_gdp        0
+policy_rate_pct                        0
+private_sector_credit_growth_pct       0
+global_gdp_growth_pct                  0
+global_inflation_pct                   0
+exchange_rate_yoy_change_pct        5585
+real_policy_rate_pct                   0
+domestic_macro_stress_score            0
+global_macro_stress_score              0
+macro_period_note                      0
+dtype: int64
+
+Methodological Note
+----------------------------------------------------------------------
+The macro variables were merged by origination year. This is appropriate for contextual portfolio-risk analysis because the supplied loan dataset is loan-level origination data rather than a full monthly balance-sheet time series. The merged macro variables should not be interpreted as causal drivers without more granular borrower-level and time-series data.

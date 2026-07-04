@@ -1,0 +1,21 @@
+Loan ID,Loan Originating Date,Sector,Loan Type,Collateral,Initial Rating,Performing / Non Performing, Amount Outstanding (Rs.)
+L000001,2017-10-01,Agriculture,Mortgage Loan,secured,B,Performing,1035612
+L000002,2016-06-01,Healthcare,Term Loan,unsecured,A,Performing,800787
+L000003,2023-08-01,Construction,Term Loan,secured,BBB,Performing,4327864
+L000004,2016-04-01,Construction,Term Loan,secured,B,Non Performing,3810461
+L000005,2015-10-01,Energy,Term Loan,unsecured,CCC,Non Performing,2925539
+L000006,2023-06-01,Manufacturing,Mortgage Loan,secured,B,Non Performing,76645
+L000007,2019-12-01,Retail,Term Loan,unsecured,AA,Performing,732704
+L000008,2018-12-01,Retail,Term Loan,secured,BBB,Performing,50000
+L000009,2021-08-01,Telecommumication,Mortgage Loan,secured,A,Performing,442881
+L000010,2018-06-01,Consumer,Mortgage Loan,secured,BBB,Performing,60657
+L000011,2016-02-01,Manufacturing,Term Loan,secured,BBB,Performing,1643849
+L000012,2021-07-01,Agriculture,Mortgage Loan,unsecured,CCC,Non Performing,180559
+L000013,2016-08-01,Infrastructure Development,Term Loan,unsecured,A,Performing,2675674
+L000014,2019-12-01,Construction,Term Loan,secured,B,Non Performing,2605192
+L000015,2023-07-01,Infrastructure Development,Term Loan,unsecured,BBB,Performing,9141471
+L000016,2023-06-01,Telecommumication,Term Loan,secured,B,Non Performing,712549
+L000017,2018-03-01,Retail,Term Loan,partially_secured,A,Performing,282641
+L000018,2022-01-01,Consumer,Mortgage Loan,secured,BBB,Performing,600168
+L000019,2020-07-01,Agriculture,Term Loan,partially_secured,BBB,Performing,415354
+L000020,2019-04-01,Energy,Term Loan,partially_secured,B,Performing,4618920

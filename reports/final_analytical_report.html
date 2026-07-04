@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Final Analytical Report - ABC Bank PLC Loan Portfolio</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+            color: #172033;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #0b2545 0%, #134e8a 60%, #0f766e 100%);
+            color: white;
+            padding: 32px 42px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        .header p {
+            margin-top: 8px;
+            color: #dbeafe;
+        }
+        .container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 28px;
+        }
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 22px rgba(16,24,40,0.08);
+        }
+        h2 {
+            color: #0b2545;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 6px;
+        }
+        h3 {
+            color: #134e8a;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin: 18px 0;
+        }
+        .kpi {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .kpi .label {
+            color: #667085;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .kpi .value {
+            color: #0b2545;
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 6px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #e9eef5;
+        }
+        tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        .note {
+            background: #fffbeb;
+            border-left: 6px solid #b7791f;
+            padding: 14px;
+            border-radius: 10px;
+        }
+        .good {
+            background: #ecfdf3;
+            border-left: 6px solid #0f766e;
+            padding: 14px;
+            border-radius: 10px;
+        }
+        .footer {
+            text-align: center;
+            color: #667085;
+            font-size: 12px;
+            padding: 25px;
+        }
+        code {
+            background: #f1f5f9;
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+        @media (max-width: 900px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Final Analytical Report</h1>
+    <p>Exercise 02 — ABC Bank PLC Financial Sector Data Analysis</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+    <h2>1. Executive Summary</h2>
+    <p>
+        This report analyses the supplied ABC Bank PLC loan portfolio together with annual macroeconomic context.
+        The analysis covers data cleaning, transformation, portfolio performance indicators, sector concentration,
+        non-performing loan risk, underlying drivers of risk, anomaly detection and dashboard design.
+    </p>
+
+    <div class="kpi-grid">
+        <div class="kpi"><div class="label">Total Loans</div><div class="value">50,000</div></div>
+        <div class="kpi"><div class="label">Total Outstanding</div><div class="value">Rs. 164,930 Mn</div></div>
+        <div class="kpi"><div class="label">NPL Ratio by Amount</div><div class="value">18.74%</div></div>
+        <div class="kpi"><div class="label">NPL Ratio by Count</div><div class="value">20.63%</div></div>
+    </div>
+
+    <p>
+        The largest exposure sector is <b>Construction</b>, accounting for
+        <b>17.28%</b> of total exposure.
+        The highest composite risk sector is <b>Energy</b>.
+        The model-based top risk driver is <b>rating_rank</b>.
+    </p>
+</div>
+
+<div class="card">
+    <h2>2. Analytical Objective</h2>
+    <p>
+        The objective of the analysis is to support financial sector monitoring and decision-making by preparing
+        a clean loan portfolio dataset, integrating it with macroeconomic context, calculating financial indicators,
+        identifying risks, detecting anomalies and communicating insights through an interactive dashboard.
+    </p>
+</div>
+
+<div class="card">
+    <h2>3. Data Sources</h2>
+    <h3>Institution-Specific Loan Data</h3>
+    <p>
+        The primary dataset is the supplied ABC Bank PLC loan portfolio. It contains loan-level information including
+        loan origination date, sector, loan type, collateral, initial rating, performance status and outstanding amount.
+    </p>
+
+    <h3>External Macro and Financial Variables</h3>
+    <p>
+        The external data process attempted to collect annual macroeconomic indicators from the World Bank API.
+        When the API returned server or timeout errors, a structured fallback reference table was used to preserve
+        reproducibility. CBSL/publication-based variables such as policy rate and private-sector credit growth were
+        included as structured public-source variables.
+    </p>
+</div>
+
+<div class="card">
+    <h2>4. Data Preparation Methodology</h2>
+    <ol>
+        <li>Imported and inspected the raw Excel file.</li>
+        <li>Standardised column names and category labels.</li>
+        <li>Corrected spelling inconsistencies such as Telecommumication to Telecommunication.</li>
+        <li>Standardised performance status into Performing and Non-Performing.</li>
+        <li>Created date fields such as year, month and quarter.</li>
+        <li>Created risk features including NPL flag, rating rank, weak rating flag, collateral risk score and large exposure flag.</li>
+        <li>Created annual macroeconomic context variables.</li>
+        <li>Merged loan data with macro variables by origination year.</li>
+        <li>Created EDA outputs, financial indicators, risk scores, anomaly watchlists and dashboard files.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>5. Metrics, Logic and Performance Measures</h2>
+
+    <h3>NPL Ratio by Count</h3>
+    <p><code>NPL Count / Total Loans × 100</code></p>
+
+    <h3>NPL Ratio by Amount</h3>
+    <p><code>Non-Performing Outstanding Amount / Total Outstanding Amount × 100</code></p>
+
+    <h3>Annual Portfolio Growth</h3>
+    <p><code>Current Year Outstanding / Previous Year Outstanding - 1</code></p>
+
+    <h3>Sector Concentration</h3>
+    <p>
+        Top 3 sectors account for <b>47.02%</b> of exposure.
+        Top 5 sectors account for <b>71.17%</b>.
+        Sector HHI is <b>1240.68</b>.
+    </p>
+
+    <h3>Collateral and Rating Risk</h3>
+    <p>
+        Fully unsecured exposure is <b>34.66%</b> by amount.
+        Unsecured or partially secured exposure is <b>54.81%</b> by amount.
+        Weak-rated loans account for <b>45.91%</b> of loan count.
+    </p>
+</div>
+
+<div class="card">
+    <h2>6. Composite Sector Risk Score</h2>
+    <p>
+        The composite risk score combines NPL ratio by amount, collateral risk, rating weakness and portfolio concentration.
+        It is used to prioritise sectors for management or supervisory review.
+    </p>
+    <p><code>Composite Risk Score = 45% NPL Risk + 25% Collateral Risk + 20% Rating Weakness + 10% Concentration Risk</code></p>
+    <p>
+        The highest composite risk sector is <b>Energy</b>, with a score of
+        <b>72.40/100</b>.
+    </p>
+</div>
+
+<div class="card">
+    <h2>7. Underlying Risk Drivers</h2>
+    <p>
+        A Random Forest classifier was trained with <code>is_npl</code> as the target variable. The purpose was to identify
+        variables associated with NPL status, not to create a production probability-of-default model.
+    </p>
+    <p>
+        Model ROC AUC: <b>0.8737</b><br>
+        Top risk driver: <b>rating_rank</b><br>
+        Top driver importance: <b>0.4956</b>
+    </p>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>feature</th>
+      <th>importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rating_rank</td>
+      <td>0.4956</td>
+    </tr>
+    <tr>
+      <td>initial_rating_BBB</td>
+      <td>0.1376</td>
+    </tr>
+    <tr>
+      <td>sector_Financial Sector</td>
+      <td>0.0784</td>
+    </tr>
+    <tr>
+      <td>initial_rating_A</td>
+      <td>0.0770</td>
+    </tr>
+    <tr>
+      <td>initial_rating_BB</td>
+      <td>0.0763</td>
+    </tr>
+    <tr>
+      <td>initial_rating_B</td>
+      <td>0.0545</td>
+    </tr>
+    <tr>
+      <td>initial_rating_AA</td>
+      <td>0.0307</td>
+    </tr>
+    <tr>
+      <td>initial_rating_CCC</td>
+      <td>0.0287</td>
+    </tr>
+    <tr>
+      <td>initial_rating_AAA</td>
+      <td>0.0103</td>
+    </tr>
+    <tr>
+      <td>amount_outstanding_mn_lkr</td>
+      <td>0.0027</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+    <h2>8. Anomaly Detection Logic</h2>
+    <p>
+        Loan-level anomalies were identified using a composite anomaly score. The score combines sector-relative loan size,
+        NPL status, unsecured or partially secured collateral, weak rating, large exposure flag and sector composite risk score.
+    </p>
+    <p>
+        The anomaly watchlist is a review-prioritisation tool for management or supervisory follow-up.
+    </p>
+</div>
+
+<div class="card">
+    <h2>9. Relationships and Insights</h2>
+    <ul>
+        <li>The largest sector by exposure is <b>Construction</b>.</li>
+        <li>The highest NPL ratio by amount is in <b>Agriculture</b> at <b>24.94%</b>.</li>
+        <li>The model identifies <b>rating_rank</b> as the strongest available NPL risk driver.</li>
+        <li><b>54.81%</b> of exposure is unsecured or partially secured.</li>
+        <li>The highest domestic macro stress score is observed in <b>2022</b>.</li>
+        <li>The strongest annual portfolio growth occurred in <b>2020</b>, with growth of <b>7.42%</b>.</li>
+        <li>The weakest annual movement occurred in <b>2018</b>, with growth of <b>-5.74%</b>.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>10. Dashboard Design and Visualisation Justification</h2>
+    <ul>
+        <li>KPI cards provide immediate portfolio health indicators.</li>
+        <li>Sector exposure charts identify concentration risk.</li>
+        <li>NPL charts identify asset-quality pressure.</li>
+        <li>Composite risk score charts prioritise sectors for further examination.</li>
+        <li>Bubble charts show the relationship between concentration, NPL ratio and risk score.</li>
+        <li>Treemap shows exposure concentration visually.</li>
+        <li>Rating, collateral and loan type charts explain structural portfolio risk.</li>
+        <li>Macro charts place portfolio performance in economic context.</li>
+        <li>Feature importance charts communicate underlying NPL risk drivers.</li>
+        <li>Anomaly tables provide a loan-level review list.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>11. Assumptions</h2>
+
+    <p>The analysis is based on the following assumptions:</p>
+
+    <ol>
+        <li>
+            <b>Loan portfolio completeness:</b>
+            The supplied ABC Bank PLC loan portfolio is assumed to represent the intended loan population for this assessment.
+        </li>
+
+        <li>
+            <b>Outstanding amount as exposure:</b>
+            The field <code>amount_outstanding_lkr</code> is treated as the main exposure measure for portfolio size, concentration, NPL exposure and risk analysis.
+        </li>
+
+        <li>
+            <b>Performance status as asset-quality target:</b>
+            The field <code>performance_status</code> is assumed to correctly classify loans as Performing or Non-Performing.
+        </li>
+
+        <li>
+            <b>Origination year for macro merge:</b>
+            Annual macroeconomic indicators are merged using loan origination year. This assumes that macro conditions in the origination year provide useful context for interpreting portfolio risk.
+        </li>
+
+        <li>
+            <b>Macro variables are contextual:</b>
+            GDP growth, inflation, unemployment, exchange rate, policy rate and macro stress scores are used for contextual interpretation, not causal inference.
+        </li>
+
+        <li>
+            <b>Rating rank as credit-quality proxy:</b>
+            Initial rating is assumed to represent relative borrower or loan credit quality. Weaker ratings are treated as higher-risk categories.
+        </li>
+
+        <li>
+            <b>Collateral category as protection proxy:</b>
+            Collateral type is used as a simplified proxy for collateral protection. Secured loans are treated as lower collateral-risk than partially secured or unsecured loans.
+        </li>
+
+        <li>
+            <b>Large exposure threshold:</b>
+            Large exposures are defined using the 95th percentile of outstanding amount. This is a portfolio-based threshold created for review prioritisation.
+        </li>
+
+        <li>
+            <b>Composite risk score purpose:</b>
+            The composite sector risk score is assumed to be a management and supervisory prioritisation index. It is not a regulatory capital model.
+        </li>
+
+        <li>
+            <b>Anomaly score purpose:</b>
+            The loan anomaly score is assumed to support review prioritisation. It is not a fraud detection model.
+        </li>
+
+        <li>
+            <b>Model purpose:</b>
+            The Random Forest model is used to identify risk drivers associated with NPL status. It is not treated as a production probability-of-default model.
+        </li>
+
+        <li>
+            <b>Structured macro fallback:</b>
+            Because external API calls returned timeout or server errors during execution, structured public-source reference values were used to preserve reproducibility. These should be replaced with directly downloaded CBSL / World Bank / IMF values when stable access is available.
+        </li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>12. Sector KPI Table</h2>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sector</th>
+      <th>portfolio_share_pct</th>
+      <th>npl_ratio_amount_pct</th>
+      <th>average_collateral_risk_score</th>
+      <th>average_rating_rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Construction</td>
+      <td>17.28</td>
+      <td>20.45</td>
+      <td>0.48</td>
+      <td>4.33</td>
+    </tr>
+    <tr>
+      <td>Financial Sector</td>
+      <td>16.35</td>
+      <td>0.00</td>
+      <td>0.41</td>
+      <td>4.48</td>
+    </tr>
+    <tr>
+      <td>Infrastructure Development</td>
+      <td>13.38</td>
+      <td>22.16</td>
+      <td>0.45</td>
+      <td>4.39</td>
+    </tr>
+    <tr>
+      <td>Energy</td>
+      <td>12.69</td>
+      <td>23.52</td>
+      <td>0.45</td>
+      <td>4.41</td>
+    </tr>
+    <tr>
+      <td>Telecommunication</td>
+      <td>11.47</td>
+      <td>21.08</td>
+      <td>0.45</td>
+      <td>4.35</td>
+    </tr>
+    <tr>
+      <td>Manufacturing</td>
+      <td>9.53</td>
+      <td>22.61</td>
+      <td>0.45</td>
+      <td>4.35</td>
+    </tr>
+    <tr>
+      <td>Agriculture</td>
+      <td>7.74</td>
+      <td>24.94</td>
+      <td>0.45</td>
+      <td>4.40</td>
+    </tr>
+    <tr>
+      <td>Healthcare</td>
+      <td>6.09</td>
+      <td>24.60</td>
+      <td>0.45</td>
+      <td>4.37</td>
+    </tr>
+    <tr>
+      <td>Consumer</td>
+      <td>3.06</td>
+      <td>22.18</td>
+      <td>0.45</td>
+      <td>4.41</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>2.40</td>
+      <td>23.79</td>
+      <td>0.44</td>
+      <td>4.39</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+    <h2>13. Composite Sector Risk Table</h2>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>sector</th>
+      <th>portfolio_share_pct</th>
+      <th>npl_ratio_amount_pct</th>
+      <th>composite_risk_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Energy</td>
+      <td>12.69</td>
+      <td>23.52</td>
+      <td>72.40</td>
+    </tr>
+    <tr>
+      <td>Construction</td>
+      <td>17.28</td>
+      <td>20.45</td>
+      <td>71.91</td>
+    </tr>
+    <tr>
+      <td>Agriculture</td>
+      <td>7.74</td>
+      <td>24.94</td>
+      <td>69.46</td>
+    </tr>
+    <tr>
+      <td>Infrastructure Development</td>
+      <td>13.38</td>
+      <td>22.16</td>
+      <td>67.94</td>
+    </tr>
+    <tr>
+      <td>Healthcare</td>
+      <td>6.09</td>
+      <td>24.60</td>
+      <td>66.89</td>
+    </tr>
+    <tr>
+      <td>Consumer</td>
+      <td>3.06</td>
+      <td>22.18</td>
+      <td>63.54</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>2.40</td>
+      <td>23.79</td>
+      <td>60.81</td>
+    </tr>
+    <tr>
+      <td>Manufacturing</td>
+      <td>9.53</td>
+      <td>22.61</td>
+      <td>60.23</td>
+    </tr>
+    <tr>
+      <td>Telecommunication</td>
+      <td>11.47</td>
+      <td>21.08</td>
+      <td>59.71</td>
+    </tr>
+    <tr>
+      <td>Financial Sector</td>
+      <td>16.35</td>
+      <td>0.00</td>
+      <td>29.38</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+    <h2>14. Annual Loan-Macro Summary</h2>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>year</th>
+      <th>total_outstanding_mn_lkr</th>
+      <th>annual_portfolio_growth_pct</th>
+      <th>npl_ratio_amount_pct</th>
+      <th>sri_lanka_gdp_growth_pct</th>
+      <th>sri_lanka_inflation_pct</th>
+      <th>policy_rate_pct</th>
+      <th>domestic_macro_stress_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2015</td>
+      <td>18433.56</td>
+      <td>NaN</td>
+      <td>18.66</td>
+      <td>5.0</td>
+      <td>3.8</td>
+      <td>6.00</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <td>2016</td>
+      <td>18381.96</td>
+      <td>-0.28</td>
+      <td>19.20</td>
+      <td>4.5</td>
+      <td>4.0</td>
+      <td>7.00</td>
+      <td>31.25</td>
+    </tr>
+    <tr>
+      <td>2017</td>
+      <td>18997.62</td>
+      <td>3.35</td>
+      <td>21.11</td>
+      <td>3.6</td>
+      <td>6.6</td>
+      <td>7.25</td>
+      <td>52.50</td>
+    </tr>
+    <tr>
+      <td>2018</td>
+      <td>17907.98</td>
+      <td>-5.74</td>
+      <td>17.73</td>
+      <td>3.3</td>
+      <td>4.3</td>
+      <td>8.00</td>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <td>2019</td>
+      <td>17672.18</td>
+      <td>-1.32</td>
+      <td>20.19</td>
+      <td>2.3</td>
+      <td>4.3</td>
+      <td>7.00</td>
+      <td>52.50</td>
+    </tr>
+    <tr>
+      <td>2020</td>
+      <td>18983.81</td>
+      <td>7.42</td>
+      <td>17.80</td>
+      <td>-4.6</td>
+      <td>4.6</td>
+      <td>4.50</td>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <td>2021</td>
+      <td>18564.23</td>
+      <td>-2.21</td>
+      <td>17.69</td>
+      <td>3.5</td>
+      <td>6.0</td>
+      <td>5.00</td>
+      <td>52.50</td>
+    </tr>
+    <tr>
+      <td>2022</td>
+      <td>17657.00</td>
+      <td>-4.89</td>
+      <td>17.49</td>
+      <td>-7.8</td>
+      <td>46.4</td>
+      <td>15.50</td>
+      <td>97.50</td>
+    </tr>
+    <tr>
+      <td>2023</td>
+      <td>18331.90</td>
+      <td>3.82</td>
+      <td>18.71</td>
+      <td>-2.3</td>
+      <td>17.4</td>
+      <td>9.00</td>
+      <td>90.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+    <h2>15. Data Sources and Source Tracking</h2>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>variable</th>
+      <th>source_used</th>
+      <th>indicator_code</th>
+      <th>source_url</th>
+      <th>fallback_used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sri_lanka_gdp_growth_pct</td>
+      <td>Structured fallback reference table</td>
+      <td>NY.GDP.MKTP.KD.ZG</td>
+      <td>https://api.worldbank.org/v2/country/LKA/indicator/NY.GDP.MKTP.KD.ZG?format=json&amp;date=2015:2024</td>
+      <td>Yes - API unavailable or incomplete during run</td>
+    </tr>
+    <tr>
+      <td>sri_lanka_inflation_pct</td>
+      <td>Structured fallback reference table</td>
+      <td>FP.CPI.TOTL.ZG</td>
+      <td>https://api.worldbank.org/v2/country/LKA/indicator/FP.CPI.TOTL.ZG?format=json&amp;date=2015:2024</td>
+      <td>Yes - API unavailable or incomplete during run</td>
+    </tr>
+    <tr>
+      <td>sri_lanka_unemployment_pct</td>
+      <td>Structured fallback reference table</td>
+      <td>SL.UEM.TOTL.ZS</td>
+      <td>https://api.worldbank.org/v2/country/LKA/indicator/SL.UEM.TOTL.ZS?format=json&amp;date=2015:2024</td>
+      <td>Yes - API unavailable or incomplete during run</td>
+    </tr>
+    <tr>
+      <td>avg_exchange_rate_lkr_usd</td>
+      <td>Structured fallback reference table</td>
+      <td>PA.NUS.FCRF</td>
+      <td>https://api.worldbank.org/v2/country/LKA/indicator/PA.NUS.FCRF?format=json&amp;date=2015:2024</td>
+      <td>Yes - API unavailable or incomplete during run</td>
+    </tr>
+    <tr>
+      <td>private_credit_by_banks_pct_gdp</td>
+      <td>Structured fallback reference table</td>
+      <td>FS.AST.PRVT.GD.ZS</td>
+      <td>https://api.worldbank.org/v2/country/LKA/indicator/FS.AST.PRVT.GD.ZS?format=json&amp;date=2015:2024</td>
+      <td>Yes - API unavailable or incomplete during run</td>
+    </tr>
+    <tr>
+      <td>policy_rate_pct</td>
+      <td>CBSL publications / structured reference table</td>
+      <td>Policy rate / standing facility rate context</td>
+      <td>Central Bank of Sri Lanka publications</td>
+      <td>Structured from public-source reference</td>
+    </tr>
+    <tr>
+      <td>private_sector_credit_growth_pct</td>
+      <td>CBSL publications / structured reference table</td>
+      <td>Private sector credit growth</td>
+      <td>Central Bank of Sri Lanka publications</td>
+      <td>Structured from public-source reference</td>
+    </tr>
+    <tr>
+      <td>global_gdp_growth_pct</td>
+      <td>IMF World Economic Outlook / structured reference table</td>
+      <td>Global GDP growth</td>
+      <td>IMF World Economic Outlook</td>
+      <td>Structured from public-source reference</td>
+    </tr>
+    <tr>
+      <td>global_inflation_pct</td>
+      <td>IMF World Economic Outlook / structured reference table</td>
+      <td>Global inflation</td>
+      <td>IMF World Economic Outlook</td>
+      <td>Structured from public-source reference</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card">
+    <h2>16. Limitations</h2>
+    <ul>
+        <li>The dataset does not include borrower income, repayment history, days past due, collateral values or recovery data.</li>
+        <li>The dataset is loan-level origination data, not a monthly balance-sheet time series.</li>
+        <li>Annual growth is interpreted using origination-year exposure.</li>
+        <li>Macro variables are annual and may not capture intra-year stress.</li>
+        <li>The macro API failed during execution, so structured reference values were used for workflow continuity.</li>
+        <li>The Random Forest model is explanatory, not a production probability-of-default model.</li>
+        <li>The anomaly score is a review-prioritisation tool, not a fraud detection model.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>17. Decision-Making Relevance</h2>
+    <p>The analysis supports decision-making by helping users:</p>
+    <ul>
+        <li>Identify high-exposure sectors.</li>
+        <li>Monitor NPL concentration.</li>
+        <li>Prioritise high-risk sectors for review.</li>
+        <li>Understand drivers of NPL risk.</li>
+        <li>Investigate large, weakly rated or insufficiently secured loans.</li>
+        <li>Interpret portfolio risk in macroeconomic context.</li>
+        <li>Communicate findings through an interactive dashboard.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <h2>18. Recommendations for Further Examination</h2>
+    <ol>
+        <li>Review <b>Energy</b> due to its highest composite sector risk score.</li>
+        <li>Review <b>Agriculture</b> due to its high NPL ratio by amount.</li>
+        <li>Investigate large exposures with weak ratings and unsecured or partially secured collateral.</li>
+        <li>Validate Financial Sector loans because the dataset reports 0.00% NPL despite high exposure.</li>
+        <li>Monitor loans originated during years with high domestic macro stress.</li>
+    </ol>
+</div>
+
+<div class="card">
+    <h2>19. Conclusion</h2>
+    <p>
+        The analysis provides a complete financial-sector monitoring workflow for ABC Bank PLC's loan portfolio.
+        It combines data cleaning, portfolio risk metrics, sector concentration analysis, macro context,
+        risk-driver modelling, anomaly detection and dashboard communication.
+    </p>
+    <p>
+        The results indicate that credit rating quality, collateral weakness, sector concentration and sector-level
+        NPL ratios are key areas for supervisory and management attention.
+    </p>
+</div>
+
+</div>
+
+<div class="footer">
+    Final Analytical Report | Exercise 02 | Generated by scripts/08_final_report.py
+</div>
+
+</body>
+</html>

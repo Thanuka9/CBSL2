@@ -1,0 +1,11 @@
+
+Open these files for final review:
+
+1. Interactive Dashboard:
+C:\Users\cbslab\Desktop\Technical Assessment Data Scientist\Thanuka_Ellepola_DataScienceAssessment\Exercise 02\dashboard\abc_bank_loan_portfolio_dashboard.html
+
+2. Final Analytical Report:
+C:\Users\cbslab\Desktop\Technical Assessment Data Scientist\Thanuka_Ellepola_DataScienceAssessment\Exercise 02\reports\final_analytical_report.html
+
+3. Markdown Report:
+C:\Users\cbslab\Desktop\Technical Assessment Data Scientist\Thanuka_Ellepola_DataScienceAssessment\Exercise 02\reports\final_analytical_report.md

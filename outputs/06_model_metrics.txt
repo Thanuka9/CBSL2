@@ -1,0 +1,25 @@
+Exercise 02 - Step 06 Risk Driver Model Metrics
+================================================================================
+
+Model: RandomForestClassifier
+Target: is_npl
+
+ROC AUC: 0.8737
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      0.74      0.85      9921
+           1       0.50      1.00      0.67      2579
+
+    accuracy                           0.79     12500
+   macro avg       0.75      0.87      0.76     12500
+weighted avg       0.90      0.79      0.81     12500
+
+
+Confusion Matrix:
+[[7328 2593]
+ [   2 2577]]
+
+Interpretation Note:
+This model is used to identify risk drivers associated with NPL status. It should be interpreted as an explanatory screening model rather than a production probability-of-default model because borrower-level repayment history, income, days-past-due, collateral valuation, and recovery data are not available in the supplied dataset.

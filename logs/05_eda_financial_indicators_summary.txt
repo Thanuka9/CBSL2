@@ -1,0 +1,44 @@
+Exercise 02 - Step 05 EDA and Financial Indicators Summary
+================================================================================
+
+Portfolio Overview
+--------------------------------------------------------------------------------
+Number of loans: 50,000
+Total outstanding: Rs. 164,930.23 Mn
+NPL ratio by count: 20.63%
+NPL ratio by amount: 18.74%
+Fully unsecured exposure share by amount: 34.66%
+Unsecured or partially secured exposure share by amount: 54.81%
+
+Key Sector Findings
+--------------------------------------------------------------------------------
+Largest sector by exposure: Construction (17.28% of portfolio).
+Highest NPL sector by amount: Agriculture (24.94%).
+Top 3 sectors account for 47.02% of total exposure.
+Top 5 sectors account for 71.17% of total exposure.
+Sector HHI: 1240.68
+
+Loan Type / Collateral Findings
+--------------------------------------------------------------------------------
+Largest loan type by exposure: Term Loan.
+Collateral category with highest NPL ratio by amount: Secured (18.82%).
+
+Macro Context
+--------------------------------------------------------------------------------
+Macro variables were merged by loan origination year. They provide context for risk interpretation, especially during the 2020 COVID contraction and the 2022-2023 Sri Lanka crisis period. Because the loan data is loan-level origination data, these macro variables are not interpreted as direct causal drivers.
+
+Generated Outputs
+--------------------------------------------------------------------------------
+- outputs/05_portfolio_summary.csv
+- outputs/05_sector_kpi.csv
+- outputs/05_loan_type_kpi.csv
+- outputs/05_collateral_kpi.csv
+- outputs/05_rating_kpi.csv
+- outputs/05_yearly_trend_macro_kpi.csv
+- outputs/05_concentration_indicators.csv
+- outputs/05_correlation_matrix.csv
+- figures/05_sector_exposure.png
+- figures/05_sector_npl_ratio.png
+- figures/05_annual_portfolio_trend.png
+- figures/05_npl_inflation_trend.png
+- figures/05_rating_distribution.png

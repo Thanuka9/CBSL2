@@ -1,0 +1,40 @@
+Exercise 02 - Raw Data Profile Before Cleaning
+======================================================================
+
+Purpose
+----------------------------------------------------------------------
+This profile was prepared before formal data cleaning to understand the original structure, completeness, category consistency, and early risk relationships in the supplied ABC Bank PLC loan portfolio.
+
+Dataset Shape
+----------------------------------------------------------------------
+Rows: 50,000
+Columns: 8
+
+Columns
+----------------------------------------------------------------------
+- Loan ID
+- Loan Originating Date
+- Sector
+- Loan Type
+- Collateral
+- Initial Rating
+- Performing / Non Performing
+-  Amount Outstanding (Rs.)
+
+Initial Data Quality Observations
+----------------------------------------------------------------------
+The raw dataset was checked for missing values, duplicate values, data types, category labels, and numeric ranges. These checks help identify cleaning requirements before any transformation is applied.
+
+Early Relationship Checks
+----------------------------------------------------------------------
+Preliminary cross-tabulations were created for sector, collateral, initial rating, and loan type against performance status. These raw relationship checks are used only for initial understanding. Final EDA and financial indicators are calculated after cleaning and standardisation to avoid misleading results caused by spelling or formatting inconsistencies.
+
+Generated Files
+----------------------------------------------------------------------
+- outputs/01b_raw_column_profile.csv
+- outputs/01b_raw_category_distribution.csv
+- outputs/01b_raw_numeric_summary.csv
+- outputs/01b_raw_sector_vs_performance.csv
+- outputs/01b_raw_collateral_vs_performance.csv
+- outputs/01b_raw_rating_vs_performance.csv
+- outputs/01b_raw_loan_type_vs_performance.csv

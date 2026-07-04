@@ -1,0 +1,40 @@
+
+Exercise 02 - Dashboard Design Note
+======================================================================
+
+Dashboard objective:
+To communicate ABC Bank PLC loan portfolio risk, exposure concentration,
+asset quality and macroeconomic context to management or supervisors.
+
+Selected visuals:
+1. KPI cards:
+   - Total loans
+   - Total outstanding
+   - NPL ratio by amount
+   - Unsecured / partially secured exposure
+   These provide immediate portfolio health indicators.
+
+2. Sector exposure bar chart:
+   Shows concentration across economic sectors.
+
+3. Sector NPL ratio chart:
+   Identifies sectors with weaker asset quality.
+
+4. Composite sector risk score chart:
+   Combines NPL, collateral risk, rating weakness and concentration.
+
+5. Annual portfolio trend:
+   Shows origination-year exposure and portfolio movement.
+
+6. Macro and NPL trend:
+   Places loan portfolio risk in the context of inflation and macro stress.
+
+7. Risk-driver feature importance:
+   Explains underlying drivers of NPL risk from the Random Forest model.
+
+8. Anomaly watchlist:
+   Supports loan-level review and targeted investigation.
+
+Limitations:
+The dashboard is generated as an HTML BI-style dashboard. In Power BI,
+the same CSV outputs can be loaded and the same measures recreated.

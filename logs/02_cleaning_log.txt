@@ -1,0 +1,78 @@
+Exercise 02 - Step 02 Cleaning Log
+======================================================================
+
+Original Columns:
+- Loan ID
+- Loan Originating Date
+- Sector
+- Loan Type
+- Collateral
+- Initial Rating
+- Performing / Non Performing
+-  Amount Outstanding (Rs.)
+
+Cleaned Columns:
+- loan_id
+- loan_date
+- sector
+- loan_type
+- collateral
+- initial_rating
+- performance_status
+- amount_outstanding_lkr
+- year
+- month
+- quarter
+- amount_outstanding_mn_lkr
+- is_npl
+- is_fully_unsecured
+- has_unsecured_risk
+- collateral_risk_score
+- rating_rank
+- weak_rating_flag
+- large_exposure_flag
+
+Cleaning Summary:
+Rows before cleaning: 50,000
+Rows after cleaning: 50,000
+Rows removed: 0
+Duplicate loan IDs found before cleaning: 0
+Missing dates before cleaning: 0
+Missing amount values before cleaning: 0
+Negative amount values before cleaning: 0
+Large exposure threshold, 95th percentile LKR: 12,174,515.50
+
+Unique Sectors:
+['Agriculture', 'Construction', 'Consumer', 'Energy', 'Financial Sector', 'Healthcare', 'Infrastructure Development', 'Manufacturing', 'Retail', 'Telecommunication']
+
+Unique Loan Types:
+['Leasing', 'Mortgage Loan', 'Pawning', 'Term Loan']
+
+Unique Collateral Types:
+['Partially Secured', 'Secured', 'Unsecured']
+
+Unique Ratings:
+['A', 'AA', 'AAA', 'B', 'BB', 'BBB', 'CCC']
+
+Performance Status Values:
+performance_status
+Performing        39684
+Non-Performing    10316
+Name: count, dtype: int64
+
+Collateral Risk Score Mapping:
+Secured = 0.0
+Partially Secured = 0.5
+Unsecured = 1.0
+
+Rating Rank Mapping:
+AAA = 1
+AA = 2
+A = 3
+BBB = 4
+BB = 5
+B = 6
+CCC = 7
+CC = 8
+C = 9
+D = 10

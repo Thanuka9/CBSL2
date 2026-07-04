@@ -1,0 +1,37 @@
+feature,importance
+rating_rank,0.4956031512636911
+initial_rating_BBB,0.1376016125765927
+sector_Financial Sector,0.07835865784251039
+initial_rating_A,0.07700650652223312
+initial_rating_BB,0.07625551230221987
+initial_rating_B,0.054481969023404214
+initial_rating_AA,0.030693375054700767
+initial_rating_CCC,0.028682297559478803
+initial_rating_AAA,0.01030148079919259
+amount_outstanding_mn_lkr,0.0026831822873180223
+loan_type_Pawning,0.0013847545768216297
+sector_Agriculture,0.0005962573255034504
+sector_Manufacturing,0.0005543858279416497
+sector_Infrastructure Development,0.0005429208980384725
+sector_Energy,0.0005191454213906372
+sector_Telecommunication,0.0003769031074737908
+private_sector_credit_growth_pct,0.0003311109127531497
+avg_exchange_rate_lkr_usd,0.000311482763103096
+sri_lanka_gdp_growth_pct,0.00029629408487088187
+sector_Construction,0.0002925926236450987
+sri_lanka_inflation_pct,0.0002793143409101865
+global_macro_stress_score,0.00027588887347503033
+collateral_risk_score,0.0002566641198512866
+sri_lanka_unemployment_pct,0.00025626699541725915
+policy_rate_pct,0.0002393690576295419
+sector_Healthcare,0.0002375243135364613
+sector_Retail,0.00021707248832613513
+domestic_macro_stress_score,0.00020486320517477944
+loan_type_Mortgage Loan,0.0001691100437889974
+collateral_Secured,0.0001680566463946557
+sector_Consumer,0.00016673444781973762
+loan_type_Term Loan,0.00016481282317902188
+collateral_Partially Secured,0.0001554863242964493
+large_exposure_flag,0.000133269732582494
+collateral_Unsecured,0.00012888087106699837
+loan_type_Leasing,7.309294366743194e-05

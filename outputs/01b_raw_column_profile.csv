@@ -1,0 +1,9 @@
+column,data_type,missing_count,missing_pct,unique_count,duplicate_values_possible
+Loan ID,str,0,0.0,50000,0
+Loan Originating Date,datetime64[us],0,0.0,108,49892
+Sector,str,0,0.0,10,49990
+Loan Type,str,0,0.0,4,49996
+Collateral,str,0,0.0,3,49997
+Initial Rating,str,0,0.0,7,49993
+Performing / Non Performing,str,0,0.0,2,49998
+ Amount Outstanding (Rs.),int64,0,0.0,49255,745

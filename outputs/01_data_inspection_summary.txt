@@ -1,0 +1,136 @@
+Exercise 02 - ABC Bank Loan Portfolio Inspection
+======================================================================
+
+1. Dataset Shape
+----------------------------------------------------------------------
+Rows: 50,000
+Columns: 8
+
+2. Column Names
+----------------------------------------------------------------------
+- Loan ID
+- Loan Originating Date
+- Sector
+- Loan Type
+- Collateral
+- Initial Rating
+- Performing / Non Performing
+-  Amount Outstanding (Rs.)
+
+3. Data Types
+----------------------------------------------------------------------
+Loan ID                                   str
+Loan Originating Date          datetime64[us]
+Sector                                    str
+Loan Type                                 str
+Collateral                                str
+Initial Rating                            str
+Performing / Non Performing               str
+ Amount Outstanding (Rs.)               int64
+dtype: object
+
+4. Missing Values
+----------------------------------------------------------------------
+Loan ID                        0
+Loan Originating Date          0
+Sector                         0
+Loan Type                      0
+Collateral                     0
+Initial Rating                 0
+Performing / Non Performing    0
+ Amount Outstanding (Rs.)      0
+dtype: int64
+
+5. Duplicate Rows
+----------------------------------------------------------------------
+Duplicate rows: 0
+
+6. Basic Numeric Summary
+----------------------------------------------------------------------
+        Loan ID       Loan Originating Date        Sector  ... Initial Rating Performing / Non Performing  Amount Outstanding (Rs.)
+count     50000                       50000         50000  ...          50000                       50000              5.000000e+04
+unique    50000                         NaN            10  ...              7                           2                       NaN
+top     L000001                         NaN  Construction  ...            BBB                  Performing                       NaN
+freq          1                         NaN          5216  ...          14001                       39684                       NaN
+mean        NaN  2019-06-14 18:01:09.120000           NaN  ...            NaN                         NaN              3.298605e+06
+min         NaN         2015-01-01 00:00:00           NaN  ...            NaN                         NaN              5.000000e+04
+25%         NaN         2017-03-01 00:00:00           NaN  ...            NaN                         NaN              5.482682e+05
+50%         NaN         2019-07-01 00:00:00           NaN  ...            NaN                         NaN              1.389712e+06
+75%         NaN         2021-09-01 00:00:00           NaN  ...            NaN                         NaN              3.425440e+06
+max         NaN         2023-12-01 00:00:00           NaN  ...            NaN                         NaN              3.611778e+08
+std         NaN                         NaN           NaN  ...            NaN                         NaN              6.661943e+06
+
+[11 rows x 8 columns]
+
+7. Categorical Value Counts
+----------------------------------------------------------------------
+
+Column: Loan ID
+Loan ID
+L000001    1
+L000002    1
+L000003    1
+L000004    1
+L000005    1
+L000006    1
+L000007    1
+L000008    1
+L000009    1
+L000010    1
+L000011    1
+L000012    1
+L000013    1
+L000014    1
+L000015    1
+L000016    1
+L000017    1
+L000018    1
+L000019    1
+L000020    1
+Name: count, dtype: int64
+
+Column: Sector
+Sector
+Construction                  5216
+Energy                        5132
+Telecommumication             5077
+Consumer                      5043
+Manufacturing                 5012
+Healthcare                    4982
+Agriculture                   4959
+Infrastructure Development    4959
+Retail                        4951
+Financial Sector              4669
+Name: count, dtype: int64
+
+Column: Loan Type
+Loan Type
+Term Loan        34891
+Mortgage Loan    12262
+Leasing           2528
+Pawning            319
+Name: count, dtype: int64
+
+Column: Collateral
+Collateral
+secured              22657
+unsecured            17398
+partially_secured     9945
+Name: count, dtype: int64
+
+Column: Initial Rating
+Initial Rating
+BBB    14001
+BB     10918
+A       7571
+B       7559
+CCC     4478
+AA      3944
+AAA     1529
+Name: count, dtype: int64
+
+Column: Performing / Non Performing
+Performing / Non Performing
+Performing        39684
+Non Performing    10316
+Name: count, dtype: int64

@@ -1,0 +1,33 @@
+
+Exercise 02 - Step 03 Macro Data Notes
+======================================================================
+
+The Exercise 02 guideline requires both institution-specific loan data
+and external macroeconomic / financial variables.
+
+Source strategy:
+1. World Bank API was attempted for programmatic extraction of:
+   - GDP growth
+   - Inflation
+   - Unemployment
+   - Exchange rate
+   - Private credit by banks as % of GDP
+
+2. If API calls fail because of timeout, network restriction, or server
+   errors, the script uses a structured fallback reference table so the
+   analysis remains reproducible during the timed assessment.
+
+3. CBSL/publication-based financial variables are included as structured
+   reference variables:
+   - Policy rate
+   - Private sector credit growth
+
+4. Global macro context is included using structured IMF/global reference
+   variables:
+   - Global GDP growth
+   - Global inflation
+
+Important limitation:
+The supplied loan portfolio is loan-level origination data. Therefore,
+annual macro indicators are merged by origination year and used for
+contextual financial-risk analysis, not causal inference.
